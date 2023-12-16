@@ -35,10 +35,11 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
 
-  'tpope/surround.vim',
+  'tpope/vim-surround',
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
+  'tpope/vim-vinegar',
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
