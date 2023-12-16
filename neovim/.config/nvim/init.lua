@@ -9,6 +9,7 @@
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+vim.opt.signcolumn = "number"
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
@@ -25,6 +26,8 @@ if not vim.loop.fs_stat(lazypath) then
   }
 end
 vim.opt.rtp:prepend(lazypath)
+
+-- Nice!
 
 -- [[ Configure plugins ]]
 -- NOTE: Here is where you install your plugins.
@@ -87,6 +90,8 @@ require('lazy').setup({
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
+      numhl = true,
+      signcolumn = false,
       -- See `:help gitsigns.txt`
       signs = {
         add = { text = '+' },
