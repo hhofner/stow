@@ -44,6 +44,7 @@ require('lazy').setup({
   'tpope/vim-rhubarb',
   'tpope/vim-vinegar',
   'ojroques/nvim-bufbar',
+  'wakatime/vim-wakatime',
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
