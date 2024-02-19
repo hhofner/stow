@@ -43,9 +43,8 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
   'tpope/vim-vinegar',
-  'ojroques/nvim-bufbar',
   'wakatime/vim-wakatime',
-
+ {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
@@ -663,7 +662,10 @@ require('copilot').setup({
   panel = { enabled = false },
 })
 
-require('bufbar').setup {}
+vim.wo.relativenumber = true
+vim.w.tabstop = 4
 
+vim.opt.termguicolors = true
+require("bufferline").setup{}
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
