@@ -44,6 +44,7 @@ require('lazy').setup({
   'tpope/vim-rhubarb',
   'tpope/vim-vinegar',
   'wakatime/vim-wakatime',
+  'mattn/emmet-vim',
  {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
@@ -59,6 +60,35 @@ require('lazy').setup({
     config = function()
       require("copilot_cmp").setup()
     end,
+  },
+  {
+    "elixir-tools/elixir-tools.nvim",
+    version = "*",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      local elixir = require("elixir")
+      local elixirls = require("elixir.elixirls")
+
+      elixir.setup {
+        nextls = {enable = true},
+        credo = {},
+        elixirls = {
+          enable = true,
+          settings = elixirls.settings {
+            dialyzerEnabled = false,
+            enableTestLenses = false,
+          },
+          on_attach = function(client, bufnr)
+            vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
+            vim.keymap.set("n", "<space>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
+            vim.keymap.set("v", "<space>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
+          end,
+        }
+      }
+    end,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
   },
 
   -- NOTE: This is where your plugins related to LSP can be installed.
@@ -96,7 +126,7 @@ require('lazy').setup({
       'rafamadriz/friendly-snippets',
     },
   },
-
+  
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim', opts = {} },
   {
@@ -179,10 +209,13 @@ require('lazy').setup({
   {
     -- Theme inspired by Atom
     'navarasu/onedark.nvim',
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'onedark'
-    end,
+    -- priority = 1000,
+    -- config = function()
+    --   vim.cmd.colorscheme 'onedark'
+    -- end,
+  },
+  { "savq/melange-nvim",
+    config = function() vim.cmd.colorscheme 'melange' end,
   },
 
   {
@@ -667,5 +700,6 @@ vim.w.tabstop = 4
 
 vim.opt.termguicolors = true
 require("bufferline").setup{}
+require("elixir").setup()
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

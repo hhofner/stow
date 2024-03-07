@@ -15,7 +15,7 @@ end
 -- For example, changing the color scheme:
 config.color_scheme = 'Framer'
 config.font =
-  wezterm.font('JetBrains Mono')
+  wezterm.font('JetBrains Mono', { weight = 'Bold' })
 
 config.font_size = 16
 config.window_decorations = 'RESIZE'
