@@ -45,7 +45,7 @@ require('lazy').setup({
   'tpope/vim-vinegar',
   'wakatime/vim-wakatime',
   'mattn/emmet-vim',
- {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
+  { 'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons' },
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
@@ -62,6 +62,17 @@ require('lazy').setup({
     end,
   },
   {
+    'jesseleite/nvim-noirbuddy',
+    dependencies = {
+      { 'tjdevries/colorbuddy.nvim' }
+    },
+    lazy = false,
+    priority = 1000,
+    opts = {
+      -- All of your `setup(opts)` will go here
+    },
+  },
+  {
     "elixir-tools/elixir-tools.nvim",
     version = "*",
     event = { "BufReadPre", "BufNewFile" },
@@ -70,7 +81,7 @@ require('lazy').setup({
       local elixirls = require("elixir.elixirls")
 
       elixir.setup {
-        nextls = {enable = true},
+        nextls = { enable = true },
         credo = {},
         elixirls = {
           enable = true,
@@ -126,9 +137,9 @@ require('lazy').setup({
       'rafamadriz/friendly-snippets',
     },
   },
-  
+
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',    opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -214,8 +225,9 @@ require('lazy').setup({
     --   vim.cmd.colorscheme 'onedark'
     -- end,
   },
-  { "savq/melange-nvim",
-    config = function() vim.cmd.colorscheme 'melange' end,
+  {
+    "savq/melange-nvim",
+    -- config = function() vim.cmd.colorscheme 'melange' end,
   },
 
   {
@@ -699,7 +711,10 @@ vim.wo.relativenumber = true
 vim.w.tabstop = 4
 
 vim.opt.termguicolors = true
-require("bufferline").setup{}
+require("bufferline").setup {}
 require("elixir").setup()
+require("noirbuddy").setup { 
+  preset = 'kiwi'
+}
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
