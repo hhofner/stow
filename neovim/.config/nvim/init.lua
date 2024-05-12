@@ -708,7 +708,10 @@ require('copilot').setup({
 })
 
 vim.wo.relativenumber = true
-vim.w.tabstop = 4
+vim.opt.softtabstop = 2
+vim.opt.tabstop = 2
+vim.opt.smarttab = true
+vim.opt.expandtab = true
 
 vim.opt.termguicolors = true
 require("bufferline").setup {}
