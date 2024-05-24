@@ -1,0 +1,36 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"10% Too Dull for My Tastes Color Scheme",
+		"1337 Color Scheme",
+		"A File Icon",
+		"Astro",
+		"ColorHelper",
+		"Dockerfile Syntax Highlighting",
+		"ElixirSyntax",
+		"HTMLBeautify",
+		"JsPrettier",
+		"LSP",
+		"LSP-astro",
+		"LSP-copilot",
+		"LSP-elixir",
+		"LSP-html",
+		"LSP-marksman",
+		"LSP-tailwindcss",
+		"LSP-typescript",
+		"LSP-volar",
+		"LSP-vue",
+		"Markdown Extended",
+		"NeoVintageous",
+		"Package Control",
+		"Rainglow",
+		"SCSS",
+		"SideBarEnhancements",
+		"Vue Syntax Highlight",
+		"WakaTime",
+	],
+}

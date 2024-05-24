@@ -1,0 +1,4 @@
+[
+	{ "keys": ["ctrl+n"], "command": "toggle_side_bar"},
+	{ "keys": ["command+."], "command": "lsp_code_actions"}
+]

@@ -1,0 +1,20 @@
+{
+  "ignored_packages":
+  [
+    "Vintage",
+    "WakaTime",
+  ],
+  "theme": "Adaptive.sublime-theme",
+  "neovintageous_build_version": 13200,
+  "relative_line_numbers": true,
+    "vintageous_use_sys_clipboard": true,
+  "index_files": true,
+  "vintageous_use_super_keys": false,
+  "font_size": 17,
+  "font_face": "Cascadia Code",
+  "draw_white_space": "all",
+  "folder_exclude_patterns": ["build", "node_modules"],
+  "tab_size": 2,
+  "translate_tabs_to_spaces": true,
+  "color_scheme": "Packages/Rainglow/rainglow/Rainbow (rainglow).tmTheme",
+}
