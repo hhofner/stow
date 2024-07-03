@@ -45,7 +45,7 @@ require('lazy').setup({
   'tpope/vim-vinegar',
   'wakatime/vim-wakatime',
   'mattn/emmet-vim',
-  { 'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons' },
+  -- { 'akinsho/bufferline.nvim', branch="main", dependencies = 'nvim-tree/nvim-web-devicons' },
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
@@ -707,9 +707,9 @@ vim.opt.smarttab = true
 vim.opt.expandtab = true
 
 vim.opt.termguicolors = true
-require("bufferline").setup {}
+-- require("bufferline").setup {}
 require("elixir").setup()
-require("noirbuddy").setup { 
+require("noirbuddy").setup {
   preset = 'kiwi'
 }
 
