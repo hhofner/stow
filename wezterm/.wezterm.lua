@@ -13,7 +13,7 @@ end
 -- This is where you actually apply your config choices
 
 -- For example, changing the color scheme:
-config.color_scheme = 'Framer'
+config.color_scheme = 'tokyonight-day'
 config.font =
   wezterm.font('JetBrains Mono', { weight = 'Bold' })
 
@@ -29,7 +29,6 @@ config.window_padding = {
 
 -- Stuff I got from: https://ansidev.substack.com/p/wezterm-cheatsheet
 config.use_fancy_tab_bar = false
-config.window_background_opacity = 0.8 -- personal recommended value
 local act = wezterm.action
 
 config.keys = {
