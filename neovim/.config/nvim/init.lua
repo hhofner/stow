@@ -41,9 +41,7 @@ require('lazy').setup({
   'tpope/vim-surround',
   -- Git related plugins
   'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
   'tpope/vim-vinegar',
-  'wakatime/vim-wakatime',
   'mattn/emmet-vim',
   -- { 'akinsho/bufferline.nvim', branch="main", dependencies = 'nvim-tree/nvim-web-devicons' },
   -- Detect tabstop and shiftwidth automatically
@@ -307,7 +305,10 @@ require('lazy').setup({
     lazy = false,
     priority = 1000,
     opts = {},
-  }
+  },
+  { 'prichrd/netrw.nvim', opts = {} },
+  { 'dyng/ctrlsf.vim' }
+
 }, {})
 
 -- [[ Setting options ]]
@@ -735,7 +736,10 @@ end
 
 -- Highlight cursor line
 vim.opt.cursorline = true
-vim.cmd.colorscheme 'tokyonight-day'
+vim.cmd.colorscheme 'tokyonight'
+
+vim.keymap.set('n', 'n', 'nzz');
+vim.keymap.set('n', 'N', 'Nzz');
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

@@ -1,0 +1,177 @@
+
+21:08:29.448 [info] Loading 149 CA(s) from :otp store
+
+21:08:30.086 id=1 [debug] handled request client -> server initialize in 58ms
+
+21:08:30.090 [debug] sent notification server -> client window/logMessage
+
+21:08:30.092 [debug] NextLS v0.23.1 has initialized!
+
+21:08:30.092 [debug] sent notification server -> client window/logMessage
+
+21:08:30.092 [debug] Log file located at /Users/apple/stow/neovim/.elixir-tools/next-ls.log
+
+21:08:30.095 [debug] sent notification server -> client window/logMessage
+
+21:08:30.095 [info] [extension] Credo initializing with options %NextLS.InitOpts.Extensions.Credo{enable: true, cli_options: []}
+
+21:08:30.095 id=69 [debug] sent request server -> client client/registerCapability
+
+21:08:31.712 [debug] sent notification server -> client window/logMessage
+
+21:08:31.712 [debug] Booting runtimes...
+
+21:08:31.717 id=38 [debug] sent request server -> client window/workDoneProgress/create
+
+21:08:31.720 [debug] sent notification server -> client $/progress
+
+21:08:31.919 [debug] sent notification server -> client window/logMessage
+
+21:08:31.919 [info] Beginning DB migration...
+
+21:08:31.923 [debug] sent notification server -> client window/logMessage
+
+21:08:31.923 [info] Database is on the latest version: 7
+
+21:08:31.923 [debug] sent notification server -> client window/logMessage
+
+21:08:31.923 [info] Finished DB migration...
+
+21:08:31.923 [debug] sent notification server -> client window/logMessage
+
+21:08:31.923 [info] Booting runtime for flag_guesser.
+
+- elixir: /Users/apple/.asdf/shims/elixir
+- zombie wrapper script: /Users/apple/Library/Application Support/.burrito/next_ls_erts-15.0_0.23.1/lib/next_ls-0.23.1/priv/cmd
+- working_dir: /Users/apple/Repos/flag_guesser
+- command: /Users/apple/.asdf/shims/elixir --no-halt --sname nextls-runtime-1721218111923609916 --cookie OAA6TYMANQMNSHHOJFXLYUZMPBVXMWZLJY462D4HNFCTZYFVU5SQ==== -S mix loadpaths --no-compile
+
+Environment: 
+
+LSP=nextls
+NEXTLS_PARENT_PID=g1h3NW5leHQtbHMtMTcyMTIxODEwOTg5MDYyNjk1OEBhcHB1cnVub25vdG9idWtrdWtvbnB5dXRhAAAA4gAAAABml7Q+
+MIX_ENV=dev
+MIX_TARGET=host
+MIX_BUILD_ROOT=.elixir-tools/_build
+ROOTDIR=false
+BINDIR=false
+RELEASE_ROOT=false
+RELEASE_SYS_CONFIG=false
+PATH=/Users/apple/.asdf/shims:/Users/apple/Library/Application Support/.burrito/next_ls_erts-15.0_0.23.1/bin:/Users/apple/.local/share/nvim/mason/bin:/Users/apple/.asdf/shims:/opt/homebrew/opt/asdf/libexec/bin:/Users/apple/Library/pnpm:/Users/apple/.pyenv/plugins/pyenv-virtualenv/shims:/Users/apple/.pyenv/shims:/Users/apple/.pyenv/bin:/Applications/Sublime Text.app/Contents/SharedSupport/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Library/Apple/usr/bin:/Users/apple/.cargo/bin:/Users/apple/.cabal/bin:/Users/apple/.ghcup/bin
+
+
+21:08:31.924 [debug] handled notification client -> server initialized in 1835ms
+
+21:08:31.927 [debug] handled notification client -> server textDocument/didOpen in 3ms
+
+21:08:33.172 [debug] sent notification server -> client window/logMessage
+
+21:08:33.172 [info] Connected to node nextls-runtime-1721218111923609916@appurunonotobukkukonpyuta
+
+21:08:33.359 [debug] sent notification server -> client $/progress
+
+21:08:33.361 [debug] sent notification server -> client window/logMessage
+
+21:08:33.361 [debug] Runtime for folder flag_guesser is ready...
+
+21:08:33.362 id=70 [debug] sent request server -> client window/workDoneProgress/create
+
+21:08:33.363 [debug] sent notification server -> client $/progress
+
+21:08:33.417 [debug] sent notification server -> client window/logMessage
+
+21:08:33.417 [info]     warning: variable "game" is unused (if the variable is not meant to be used, prefix it with an underscore)
+    │
+ 18 │   def next_round(game) do
+    │                  ~~~~
+    │
+    └─ lib/flag_guesser/game.ex:18:18: FlagGuesser.Game.next_round/1
+
+
+
+21:08:33.417 [debug] sent notification server -> client window/logMessage
+
+21:08:33.417 [info]     warning: variable "game" is unused (if the variable is not meant to be used, prefix it with an underscore)
+    │
+ 22 │   def guess(game, player, guess) do
+    │             ~~~~
+    │
+    └─ lib/flag_guesser/game.ex:22:13: FlagGuesser.Game.guess/3
+
+
+
+21:08:33.417 [debug] sent notification server -> client window/logMessage
+
+21:08:33.417 [info]     warning: variable "guess" is unused (if the variable is not meant to be used, prefix it with an underscore)
+    │
+ 22 │   def guess(game, player, guess) do
+    │                           ~~~~~
+    │
+    └─ lib/flag_guesser/game.ex:22:27: FlagGuesser.Game.guess/3
+
+
+
+21:08:33.418 [debug] sent notification server -> client window/logMessage
+
+21:08:33.418 [info]     warning: variable "player" is unused (if the variable is not meant to be used, prefix it with an underscore)
+    │
+ 22 │   def guess(game, player, guess) do
+    │                   ~~~~~~
+    │
+    └─ lib/flag_guesser/game.ex:22:19: FlagGuesser.Game.guess/3
+
+
+
+21:08:33.418 [debug] sent notification server -> client window/logMessage
+
+21:08:33.418 [info]     warning: variable "game" is unused (if the variable is not meant to be used, prefix it with an underscore)
+    │
+ 26 │   def skip(game, player) do
+    │            ~~~~
+    │
+    └─ lib/flag_guesser/game.ex:26:12: FlagGuesser.Game.skip/2
+
+
+
+21:08:33.418 [debug] sent notification server -> client window/logMessage
+
+21:08:33.418 [info]     warning: variable "player" is unused (if the variable is not meant to be used, prefix it with an underscore)
+    │
+ 26 │   def skip(game, player) do
+    │                  ~~~~~~
+    │
+    └─ lib/flag_guesser/game.ex:26:18: FlagGuesser.Game.skip/2
+
+
+
+21:08:33.418 [debug] sent notification server -> client window/logMessage
+
+21:08:33.418 [info]     warning: variable "game" is unused (if the variable is not meant to be used, prefix it with an underscore)
+    │
+ 30 │   def hint(game, player) do
+    │            ~~~~
+    │
+    └─ lib/flag_guesser/game.ex:30:12: FlagGuesser.Game.hint/2
+
+
+
+21:08:33.418 [debug] sent notification server -> client window/logMessage
+
+21:08:33.418 [info]     warning: variable "player" is unused (if the variable is not meant to be used, prefix it with an underscore)
+    │
+ 30 │   def hint(game, player) do
+    │                  ~~~~~~
+    │
+    └─ lib/flag_guesser/game.ex:30:18: FlagGuesser.Game.hint/2
+
+
+
+21:08:33.421 [debug] sent notification server -> client $/progress
+
+21:08:33.421 [debug] sent notification server -> client window/logMessage
+
+21:08:33.421 [info] Compiled flag_guesser!
+
+21:08:33.422 [debug] sent notification server -> client textDocument/publishDiagnostics
+
+21:08:33.422 [debug] sent notification server -> client textDocument/publishDiagnostics
