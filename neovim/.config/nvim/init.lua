@@ -663,7 +663,7 @@ cmp.setup {
     end,
   },
   completion = {
-    completeopt = 'menu,menuone,noinsert',
+    completeopt = 'menu,menuone,noinsert,noselect',
   },
   -- Safely select entries with <CR>
   -- - If nothing is selected (including preselections) add a newline as usual.
