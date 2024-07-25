@@ -15,9 +15,9 @@ end
 -- For example, changing the color scheme:
 config.color_scheme = 'tokyonight-day'
 config.font =
-  wezterm.font_with_fallback{ 'JetBrains Mono', 'Osaka' }
+  wezterm.font_with_fallback{ 'CaskaydiaCove Nerd Font', 'Osaka' }
 
-config.font_size = 16
+config.font_size = 18
 config.window_decorations = 'RESIZE'
 
 config.window_padding = {
