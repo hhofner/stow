@@ -13,7 +13,7 @@ end
 -- This is where you actually apply your config choices
 
 -- For example, changing the color scheme:
-config.color_scheme = 'tokyonight-day'
+config.color_scheme = 'tango'
 config.font =
   wezterm.font_with_fallback{ 'CaskaydiaCove Nerd Font', 'Osaka' }
 
@@ -68,6 +68,15 @@ config.keys = {
   -- other keys
 }
 
+local dimmer = { brightness = 0.1 }
+config.background = {
+  {
+    source = {
+      File = '/Users/apple/stow/waifu-frieren.jpg',
+    },
+    hsb = dimmer,
+  }
+}
 
 -- and finally, return the configuration to wezterm
 return config
