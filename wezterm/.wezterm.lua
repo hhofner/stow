@@ -68,11 +68,13 @@ config.keys = {
   -- other keys
 }
 
+
 local dimmer = { brightness = 0.1 }
+print(wezterm.home_dir .. '/waifu-frieren.jpg')
 config.background = {
   {
     source = {
-      File = '/Users/apple/stow/waifu-frieren.jpg',
+      File = wezterm.home_dir .. '/stow/wezterm/waifu-frieren.jpg',
     },
     hsb = dimmer,
   }
