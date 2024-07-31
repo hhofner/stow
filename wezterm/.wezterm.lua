@@ -70,7 +70,6 @@ config.keys = {
 
 
 local dimmer = { brightness = 0.1 }
-print(wezterm.home_dir .. '/waifu-frieren.jpg')
 config.background = {
   {
     source = {
