@@ -59,46 +59,6 @@ require('lazy').setup({
       require("copilot_cmp").setup()
     end,
   },
-  {
-    'jesseleite/nvim-noirbuddy',
-    dependencies = {
-      { 'tjdevries/colorbuddy.nvim' }
-    },
-    lazy = false,
-    priority = 1000,
-    opts = {
-      -- All of your `setup(opts)` will go here
-    },
-  },
-  {
-    "elixir-tools/elixir-tools.nvim",
-    version = "*",
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      local elixir = require("elixir")
-      local elixirls = require("elixir.elixirls")
-
-      elixir.setup {
-        nextls = { enable = true },
-        credo = {},
-        elixirls = {
-          enable = true,
-          settings = elixirls.settings {
-            dialyzerEnabled = false,
-            enableTestLenses = false,
-          },
-          on_attach = function(client, bufnr)
-            vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
-            vim.keymap.set("n", "<space>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
-            vim.keymap.set("v", "<space>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
-          end,
-        }
-      }
-    end,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-  },
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
@@ -123,10 +83,6 @@ require('lazy').setup({
     -- Autocompletion
     'hrsh7th/nvim-cmp',
     dependencies = {
-      -- Snippet Engine & its associated nvim-cmp source
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
-
       -- Adds LSP completion capabilities
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
@@ -651,17 +607,9 @@ mason_lspconfig.setup_handlers {
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
 local cmp = require 'cmp'
-local luasnip = require 'luasnip'
-require('luasnip.loaders.from_vscode').lazy_load()
-luasnip.config.setup {}
 
 local lspkind = require('lspkind')
 cmp.setup {
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
   completion = {
     completeopt = 'menu,menuone,noinsert,noselect',
   },
@@ -689,7 +637,6 @@ cmp.setup {
   },
   sources = {
     { name = 'nvim_lsp' },
-    { name = 'luasnip' },
     { name = 'path' },
     { name = 'copilot' },
   },
@@ -715,10 +662,6 @@ vim.opt.expandtab = true
 
 vim.opt.termguicolors = true
 -- require("bufferline").setup {}
-require("elixir").setup()
-require("noirbuddy").setup {
-  preset = 'kiwi'
-}
 
 vim.keymap.set('n', '<Tab>', ':bnext<CR>')
 vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>')
@@ -740,6 +683,88 @@ vim.cmd.colorscheme 'tokyonight'
 
 vim.keymap.set('n', 'n', 'nzz');
 vim.keymap.set('n', 'N', 'Nzz');
+
+-- Block for eslint-config: https://github.com/antfu/eslint-config
+local customizations = {
+  { rule = 'style/*', severity = 'off', fixable = true },
+  { rule = 'format/*', severity = 'off', fixable = true },
+  { rule = '*-indent', severity = 'off', fixable = true },
+  { rule = '*-spacing', severity = 'off', fixable = true },
+  { rule = '*-spaces', severity = 'off', fixable = true },
+  { rule = '*-order', severity = 'off', fixable = true },
+  { rule = '*-dangle', severity = 'off', fixable = true },
+  { rule = '*-newline', severity = 'off', fixable = true },
+  { rule = '*quotes', severity = 'off', fixable = true },
+  { rule = '*semi', severity = 'off', fixable = true },
+}
+
+local lspconfig = require('lspconfig')
+-- Enable eslint for all supported languages
+lspconfig.eslint.setup(
+  {
+    on_init = function(client)
+      client.config.settings.workingDirectory = { directory = client.config.root_dir }
+    end,
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "javascript.jsx",
+      "typescript",
+      "typescriptreact",
+      "typescript.tsx",
+      "vue",
+      "html",
+      "markdown",
+      "json",
+      "jsonc",
+      "yaml",
+      "toml",
+      "xml",
+      "gql",
+      "graphql",
+      "astro",
+      "svelte",
+      "css",
+      "less",
+      "scss",
+      "pcss",
+      "postcss"
+    },
+    settings = {
+      -- Silent the stylistic rules in you IDE, but still auto fix them
+      rulesCustomizations = customizations,
+    },
+    on_attach = function(client, bufnr)
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = bufnr,
+        command = "EslintFixAll",
+      })
+    end,
+  }
+)
+
+-- If you are using mason.nvim, you can get the ts_plugin_path like this
+local mason_registry = require('mason-registry')
+local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
+
+-- local vue_language_server_path = '/path/to/@vue/language-server'
+
+lspconfig.tsserver.setup {
+  init_options = {
+    plugins = {
+      {
+        name = '@vue/typescript-plugin',
+        location = vue_language_server_path,
+        languages = { 'vue' },
+      },
+    },
+  },
+  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+}
+
+-- No need to set `hybridMode` to `true` as it's the default value
+lspconfig.volar.setup {}
+lspconfig.gleam.setup {}
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
