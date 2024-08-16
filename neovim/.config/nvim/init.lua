@@ -1,16 +1,10 @@
 --[[
-=====================================================================
-==================== HANS HOFNER NEOVIM CONFIG ======================
-=====================================================================
---]]
-
+===================================================================== ==================== HANS HOFNER NEOVIM CONFIG ====================== ===================================================================== --]] 
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-vim.opt.signcolumn = "number"
-
+vim.g.maplocalleader = ' ' vim.opt.signcolumn = "number"
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -42,7 +36,6 @@ require('lazy').setup({
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-vinegar',
-  'mattn/emmet-vim',
   -- { 'akinsho/bufferline.nvim', branch="main", dependencies = 'nvim-tree/nvim-web-devicons' },
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
@@ -93,7 +86,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',    opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -263,7 +256,16 @@ require('lazy').setup({
     opts = {},
   },
   { 'prichrd/netrw.nvim', opts = {} },
-  { 'dyng/ctrlsf.vim' }
+  { 'dyng/ctrlsf.vim' },
+  {
+    "okaihe/okai",
+    lazy = false,
+    priority = 1000,
+    config = function()
+        require("okai").setup({})
+        vim.cmd([[colorscheme okai]])
+    end,
+  }
 
 }, {})
 
@@ -345,7 +347,7 @@ require('telescope').setup {
         ['<C-d>'] = false,
       },
     },
-    file_ignore_patterns = { 'node_modules', '.git' },
+    file_ignore_patterns = { 'node_modules', '.git', 'deps', '_build' },
   },
 }
 
@@ -669,33 +671,33 @@ vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>')
 
 if vim.g.neovide then
   vim.o.guifont = "CaskaydiaCove Nerd Font Mono:h14"
-  vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
-  vim.keymap.set('v', '<D-c>', '"+y') -- Copy
-  vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
-  vim.keymap.set('v', '<D-v>', '"+P') -- Paste visual mode
-  vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
+  vim.keymap.set('n', '<D-s>', ':w<CR>')      -- Save
+  vim.keymap.set('v', '<D-c>', '"+y')         -- Copy
+  vim.keymap.set('n', '<D-v>', '"+P')         -- Paste normal mode
+  vim.keymap.set('v', '<D-v>', '"+P')         -- Paste visual mode
+  vim.keymap.set('c', '<D-v>', '<C-R>+')      -- Paste command mode
   vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
 end
 
 -- Highlight cursor line
 vim.opt.cursorline = true
-vim.cmd.colorscheme 'tokyonight'
+-- vim.cmd.colorscheme 'tokyonight'
 
 vim.keymap.set('n', 'n', 'nzz');
 vim.keymap.set('n', 'N', 'Nzz');
 
 -- Block for eslint-config: https://github.com/antfu/eslint-config
 local customizations = {
-  { rule = 'style/*', severity = 'off', fixable = true },
-  { rule = 'format/*', severity = 'off', fixable = true },
-  { rule = '*-indent', severity = 'off', fixable = true },
+  { rule = 'style/*',   severity = 'off', fixable = true },
+  { rule = 'format/*',  severity = 'off', fixable = true },
+  { rule = '*-indent',  severity = 'off', fixable = true },
   { rule = '*-spacing', severity = 'off', fixable = true },
-  { rule = '*-spaces', severity = 'off', fixable = true },
-  { rule = '*-order', severity = 'off', fixable = true },
-  { rule = '*-dangle', severity = 'off', fixable = true },
+  { rule = '*-spaces',  severity = 'off', fixable = true },
+  { rule = '*-order',   severity = 'off', fixable = true },
+  { rule = '*-dangle',  severity = 'off', fixable = true },
   { rule = '*-newline', severity = 'off', fixable = true },
-  { rule = '*quotes', severity = 'off', fixable = true },
-  { rule = '*semi', severity = 'off', fixable = true },
+  { rule = '*quotes',   severity = 'off', fixable = true },
+  { rule = '*semi',     severity = 'off', fixable = true },
 }
 
 local lspconfig = require('lspconfig')
@@ -745,7 +747,8 @@ lspconfig.eslint.setup(
 
 -- If you are using mason.nvim, you can get the ts_plugin_path like this
 local mason_registry = require('mason-registry')
-local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
+local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() ..
+'/node_modules/@vue/language-server'
 
 -- local vue_language_server_path = '/path/to/@vue/language-server'
 
@@ -765,6 +768,7 @@ lspconfig.tsserver.setup {
 -- No need to set `hybridMode` to `true` as it's the default value
 lspconfig.volar.setup {}
 lspconfig.gleam.setup {}
+lspconfig.emmet_language_server.setup {}
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
