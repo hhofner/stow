@@ -76,6 +76,8 @@ require('lazy').setup({
     -- Autocompletion
     'hrsh7th/nvim-cmp',
     dependencies = {
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
       -- Adds LSP completion capabilities
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
@@ -259,12 +261,12 @@ require('lazy').setup({
   { 'dyng/ctrlsf.vim' },
   {
     "okaihe/okai",
-    lazy = false,
-    priority = 1000,
-    config = function()
-        require("okai").setup({})
-        vim.cmd([[colorscheme okai]])
-    end,
+    -- lazy = false,
+    -- priority = 1000,
+    -- config = function()
+    --     require("okai").setup({})
+    --     vim.cmd([[colorscheme okai]])
+    -- end,
   }
 
 }, {})
@@ -609,9 +611,17 @@ mason_lspconfig.setup_handlers {
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
 local cmp = require 'cmp'
+local luasnip = require 'luasnip'
+require('luasnip.loaders.from_vscode').lazy_load()
+luasnip.config.setup {}
 
 local lspkind = require('lspkind')
 cmp.setup {
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
+  },
   completion = {
     completeopt = 'menu,menuone,noinsert,noselect',
   },
@@ -641,6 +651,7 @@ cmp.setup {
     { name = 'nvim_lsp' },
     { name = 'path' },
     { name = 'copilot' },
+    { name = 'luasnip' }
   },
   formatting = {
     format = lspkind.cmp_format({
@@ -650,6 +661,8 @@ cmp.setup {
     })
   }
 }
+
+
 
 require('copilot').setup({
   suggestion = { enabled = false },
@@ -768,7 +781,9 @@ lspconfig.tsserver.setup {
 -- No need to set `hybridMode` to `true` as it's the default value
 lspconfig.volar.setup {}
 lspconfig.gleam.setup {}
-lspconfig.emmet_language_server.setup {}
+lspconfig.emmet_language_server.setup {
+  filetypes = {"heex", "vue", "html", "css", "javascript", "astro", "elixir"},
+}
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
