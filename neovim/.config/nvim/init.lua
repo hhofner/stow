@@ -267,6 +267,14 @@ require('lazy').setup({
     --     require("okai").setup({})
     --     vim.cmd([[colorscheme okai]])
     -- end,
+  },
+  {
+    "xero/miasma.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd("colorscheme miasma")
+    end,
   }
 
 }, {})
