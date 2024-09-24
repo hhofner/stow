@@ -1,5 +1,7 @@
 --[[
-===================================================================== ==================== HANS HOFNER NEOVIM CONFIG ====================== ===================================================================== --]] 
+===================================================================== 
+==================== HANS HOFNER NEOVIM CONFIG ====================== 
+===================================================================== --]] 
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
@@ -166,14 +168,6 @@ require('lazy').setup({
     },
   },
 
-  {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    -- priority = 1000,
-    -- config = function()
-    --   vim.cmd.colorscheme 'onedark'
-    -- end,
-  },
   {
     "savq/melange-nvim",
     -- config = function() vim.cmd.colorscheme 'melange' end,
