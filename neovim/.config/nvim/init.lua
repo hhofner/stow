@@ -266,8 +266,14 @@ require('lazy').setup({
     "xero/miasma.nvim",
     lazy = false,
     priority = 1000,
+  },
+  {
+    "killitar/obscure.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
     config = function()
-      vim.cmd("colorscheme miasma")
+      vim.cmd("colorscheme obscure")
     end,
   }
 
