@@ -1,12 +1,13 @@
 --[[
-===================================================================== 
-==================== HANS HOFNER NEOVIM CONFIG ====================== 
-===================================================================== --]] 
+=====================================================================
+==================== HANS HOFNER NEOVIM CONFIG ======================
+===================================================================== --]]
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
-vim.g.maplocalleader = ' ' vim.opt.signcolumn = "number"
+vim.g.maplocalleader = ' '
+vim.opt.signcolumn = "number"
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -37,7 +38,6 @@ require('lazy').setup({
   'tpope/vim-surround',
   -- Git related plugins
   'tpope/vim-fugitive',
-  'tpope/vim-vinegar',
   -- { 'akinsho/bufferline.nvim', branch="main", dependencies = 'nvim-tree/nvim-web-devicons' },
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
@@ -275,7 +275,29 @@ require('lazy').setup({
     config = function()
       vim.cmd("colorscheme obscure")
     end,
-  }
+  },
+  { 'wakatime/vim-wakatime', lazy = false },
+  {
+    "kdheepak/lazygit.nvim",
+    lazy = true,
+    cmd = {
+      "LazyGit",
+      "LazyGitConfig",
+      "LazyGitCurrentFile",
+      "LazyGitFilter",
+      "LazyGitFilterCurrentFile",
+    },
+    -- optional for floating window border decoration
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    -- setting the keybinding for LazyGit with 'keys' is recommended in
+    -- order to load the plugin when the command is run for the first time
+    keys = {
+      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
+    }
+  },
+  'stevearc/oil.nvim'
 
 }, {})
 
@@ -769,7 +791,7 @@ lspconfig.eslint.setup(
 -- If you are using mason.nvim, you can get the ts_plugin_path like this
 local mason_registry = require('mason-registry')
 local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() ..
-'/node_modules/@vue/language-server'
+    '/node_modules/@vue/language-server'
 
 -- local vue_language_server_path = '/path/to/@vue/language-server'
 
@@ -790,8 +812,11 @@ lspconfig.tsserver.setup {
 lspconfig.volar.setup {}
 lspconfig.gleam.setup {}
 lspconfig.emmet_language_server.setup {
-  filetypes = {"heex", "vue", "html", "css", "javascript", "astro", "elixir"},
+  filetypes = { "heex", "vue", "html", "css", "javascript", "astro", "elixir" },
 }
+
+require("oil").setup()
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
