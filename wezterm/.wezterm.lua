@@ -73,7 +73,7 @@ local dimmer = { brightness = 0.1 }
 config.background = {
   {
     source = {
-      File = wezterm.home_dir .. '/stow/wezterm/waifu-frieren.jpg',
+      File = wezterm.home_dir .. '/stow/wezterm/jinx.jpg',
     },
     hsb = dimmer,
   }

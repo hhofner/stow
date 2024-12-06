@@ -170,7 +170,6 @@ require('lazy').setup({
 
   {
     "savq/melange-nvim",
-    -- config = function() vim.cmd.colorscheme 'melange' end,
   },
 
   {
@@ -199,12 +198,12 @@ require('lazy').setup({
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
+  { "nvim-lua/plenary.nvim", branch = "master" },
   -- Fuzzy Finder (files, lsp, etc)
   {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
     dependencies = {
-      'nvim-lua/plenary.nvim',
       -- Fuzzy Finder Algorithm which requires local dependencies to be built.
       -- Only load if `make` is available. Make sure you have the system
       -- requirements installed.
@@ -259,7 +258,6 @@ require('lazy').setup({
     -- priority = 1000,
     -- config = function()
     --     require("okai").setup({})
-    --     vim.cmd([[colorscheme okai]])
     -- end,
   },
   {
@@ -272,9 +270,6 @@ require('lazy').setup({
     lazy = false,
     priority = 1000,
     opts = {},
-    config = function()
-      vim.cmd("colorscheme obscure")
-    end,
   },
   { 'wakatime/vim-wakatime', lazy = false },
   {
@@ -288,16 +283,27 @@ require('lazy').setup({
       "LazyGitFilterCurrentFile",
     },
     -- optional for floating window border decoration
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
+    -- dependencies = {
+    --   "nvim-lua/plenary.nvim",
+    -- },
     -- setting the keybinding for LazyGit with 'keys' is recommended in
     -- order to load the plugin when the command is run for the first time
     keys = {
       { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
     }
   },
-  'stevearc/oil.nvim'
+  'stevearc/oil.nvim',
+  {'daschw/leaf.nvim',
+    config = function()
+      vim.cmd("colorscheme leaf")
+    end,
+  },
+  {
+    'yorickpeterse/vim-paper',
+    -- config = function()
+    --   vim.cmd("colorscheme paper")
+    -- end
+  },
 
 }, {})
 
@@ -724,7 +730,6 @@ end
 
 -- Highlight cursor line
 vim.opt.cursorline = true
--- vim.cmd.colorscheme 'tokyonight'
 
 vim.keymap.set('n', 'n', 'nzz');
 vim.keymap.set('n', 'N', 'Nzz');
@@ -817,6 +822,13 @@ lspconfig.emmet_language_server.setup {
 
 require("oil").setup()
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
+vim.cmd [[
+  highlight Normal guibg=none
+  highlight NonText guibg=none
+  highlight Normal ctermbg=none
+  highlight NonText ctermbg=none
+]]
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

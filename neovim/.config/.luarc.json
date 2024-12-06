@@ -35,6 +35,7 @@
         "/Users/hans_hofner/.local/share/nvim/lazy/LuaSnip/lua",
         "/Users/hans_hofner/.local/share/nvim/lazy/mason-lspconfig.nvim/lua",
         "/Users/hans_hofner/stow/neovim/.config/nvim/lua",
-        "${3rd}/luv/library"
+        "${3rd}/luv/library",
+        "${3rd}/luassert/library"
     ]
 }
