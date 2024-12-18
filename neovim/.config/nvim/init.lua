@@ -314,14 +314,13 @@ require('lazy').setup({
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 }, {})
 
-vim.cmd("colorscheme catppuccin")
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 
 -- Set highlight on search
-vim.o.hlsearch = false
+vim.o.hlsearch = true
 
 -- Make line numbers default
 vim.wo.number = true
@@ -708,7 +707,7 @@ cmp.setup {
   }
 }
 
-
+require('ibl').setup()
 
 require('copilot').setup({
   suggestion = { enabled = false },
@@ -833,6 +832,14 @@ lspconfig.emmet_language_server.setup {
 require("oil").setup()
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
+require("catppuccin").setup({
+  flavour = "frappe", -- latte, frappe, macchiato, mocha, auto
+  transparent_background = true,
+})
+vim.cmd.colorscheme "catppuccin"
+
+-- Above code makes it transparent but I think for catppuccin I want to handle
+-- this in the config
 -- vim.cmd [[
 --   highlight Normal guibg=none
 --   highlight NonText guibg=none
