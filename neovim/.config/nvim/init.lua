@@ -169,10 +169,6 @@ require('lazy').setup({
   },
 
   {
-    "savq/melange-nvim",
-  },
-
-  {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
@@ -186,14 +182,13 @@ require('lazy').setup({
     },
   },
 
-  {
-    -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help ibl`
-    main = 'ibl',
-    opts = {},
-  },
+  -- {
+  --   -- Add indentation guides even on blank lines
+  --   'lukas-reineke/indent-blankline.nvim',
+  --   -- Enable `lukas-reineke/indent-blankline.nvim`
+  --   -- See `:help ibl` main = 'ibl',
+  --   opts = {},
+  -- },
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
@@ -244,33 +239,9 @@ require('lazy').setup({
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {},
-  },
+  { import = 'colors.colorschemes' },
   { 'prichrd/netrw.nvim', opts = {} },
   { 'dyng/ctrlsf.vim' },
-  {
-    "okaihe/okai",
-    -- lazy = false,
-    -- priority = 1000,
-    -- config = function()
-    --     require("okai").setup({})
-    -- end,
-  },
-  {
-    "xero/miasma.nvim",
-    lazy = false,
-    priority = 1000,
-  },
-  {
-    "killitar/obscure.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {},
-  },
   { 'wakatime/vim-wakatime', lazy = false },
   {
     "kdheepak/lazygit.nvim",
@@ -293,13 +264,6 @@ require('lazy').setup({
     }
   },
   'stevearc/oil.nvim',
-  'daschw/leaf.nvim',
-  {
-    'yorickpeterse/vim-paper',
-    -- config = function()
-    --   vim.cmd("colorscheme paper")
-    -- end
-  },
   {
     "hedyhli/outline.nvim",
     lazy = true,
@@ -311,13 +275,43 @@ require('lazy').setup({
       -- Your setup opts here
     },
   },
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  {
+    '2kabhishek/exercism.nvim',
+    cmd = {
+      'ExercismLanguages',
+      'ExercismList',
+      'ExercismSubmit',
+      'ExercismTest',
+    },
+    keys = {
+      '<leader>exa',
+      '<leader>exl',
+      '<leader>exs',
+      '<leader>ext',
+    },
+    dependencies = {
+      '2kabhishek/utils.nvim',  -- required, for utility functions
+      'stevearc/dressing.nvim', -- optional, highly recommended, for fuzzy select UI
+      '2kabhishek/termim.nvim', -- optional, better UX for running tests
+    },
+    -- Add your custom configs here, keep it blank for default configs (required)
+    opts = {},
+  },
+  {
+    "olimorris/codecompanion.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = true
+  },
 }, {})
-
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
+
+vim.o.listchars = 'tab:▸/'
 
 -- Set highlight on search
 vim.o.hlsearch = true
@@ -372,6 +366,12 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
+-- [[Split vertically and go to the new split]]
+vim.keymap.set('n', '<leader>svd', function()
+  vim.cmd('vsplit')            -- Split vertically
+  vim.api.nvim_input('<C-w>l') -- Go to the right split
+  vim.cmd('normal! gd')        -- Go to definition
+end, { desc = 'Split Vertically, Go to Definition' })
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -707,7 +707,7 @@ cmp.setup {
   }
 }
 
-require('ibl').setup()
+-- require('ibl').setup()
 
 require('copilot').setup({
   suggestion = { enabled = false },
@@ -758,49 +758,52 @@ local customizations = {
 }
 
 local lspconfig = require('lspconfig')
--- Enable eslint for all supported languages
-lspconfig.eslint.setup(
-  {
-    on_init = function(client)
-      client.config.settings.workingDirectory = { directory = client.config.root_dir }
-    end,
-    filetypes = {
-      "javascript",
-      "javascriptreact",
-      "javascript.jsx",
-      "typescript",
-      "typescriptreact",
-      "typescript.tsx",
-      "vue",
-      "html",
-      "markdown",
-      "json",
-      "jsonc",
-      "yaml",
-      "toml",
-      "xml",
-      "gql",
-      "graphql",
-      "astro",
-      "svelte",
-      "css",
-      "less",
-      "scss",
-      "pcss",
-      "postcss"
-    },
-    settings = {
-      -- Silent the stylistic rules in you IDE, but still auto fix them
-      rulesCustomizations = customizations,
-    },
-    on_attach = function(client, bufnr)
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        buffer = bufnr,
-        command = "EslintFixAll",
-      })
-    end,
-  }
-)
+lspconfig.biome.setup({
+  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "json", "jsonc" },
+})
+-- (Don't) Enable eslint for all supported languages
+-- lspconfig.eslint.setup(
+--   {
+--     on_init = function(client)
+--       client.config.settings.workingDirectory = { directory = client.config.root_dir }
+--     end,
+--     filetypes = {
+--       "javascript",
+--       "javascriptreact",
+--       "javascript.jsx",
+--       "typescript",
+--       "typescriptreact",
+--       "typescript.tsx",
+--       "vue",
+--       "html",
+--       "markdown",
+--       "json",
+--       "jsonc",
+--       "yaml",
+--       "toml",
+--       "xml",
+--       "gql",
+--       "graphql",
+--       "astro",
+--       "svelte",
+--       "css",
+--       "less",
+--       "scss",
+--       "pcss",
+--       "postcss"
+--     },
+--     settings = {
+--       -- Silent the stylistic rules in you IDE, but still auto fix them
+--       rulesCustomizations = customizations,
+--     },
+--     on_attach = function(client, bufnr)
+--       vim.api.nvim_create_autocmd("BufWritePre", {
+--         buffer = bufnr,
+--         command = "EslintFixAll",
+--       })
+--     end,
+--   }
+-- )
 
 -- If you are using mason.nvim, you can get the ts_plugin_path like this
 local mason_registry = require('mason-registry')
@@ -832,11 +835,28 @@ lspconfig.emmet_language_server.setup {
 require("oil").setup()
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
-require("catppuccin").setup({
-  flavour = "frappe", -- latte, frappe, macchiato, mocha, auto
-  transparent_background = true,
-})
 vim.cmd.colorscheme "catppuccin"
+
+require('exercism').setup({
+  exercism_workspace = '~/exercism', -- Default workspace for exercism exercises
+  default_language = 'elixir', -- Default language for exercise list
+  add_default_keybindings = true, -- Whether to add default keybindings
+  icons = {
+    concept = '', -- Icon for concept exercises
+    practice = '', -- Icon for practice exercises
+  },
+})
+
+require("codecompanion").setup({
+  strategies = {
+    chat = {
+      adapter = "anthropic",
+    },
+    inline = {
+      adapter = "copilot",
+    },
+  },
+})
 
 -- Above code makes it transparent but I think for catppuccin I want to handle
 -- this in the config
