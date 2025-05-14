@@ -62,6 +62,9 @@ vim.o.completeopt = 'menuone,noselect'
 -- You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+-- Turn off the bar below lualine, called showmode
+vim.opt.showmode = false
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
