@@ -15,7 +15,7 @@ end
 -- For example, changing the color scheme:
 config.color_scheme = 'tango'
 config.font =
-  wezterm.font_with_fallback{ 'CaskaydiaCove Nerd Font', 'Osaka' }
+  wezterm.font_with_fallback{ 'Hack Nerd Font Mono', 'Osaka' }
 
 config.font_size = 18
 config.window_decorations = 'RESIZE'
