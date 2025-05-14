@@ -5,7 +5,7 @@ color_setting = {
 }
 
 local colors = {
-  blue         = '#21a9ff',
+  blue         = '#1493e2',
   black        = '#282828',
   white        = '#fcfcfc',
   red          = '#fb4934',
@@ -31,7 +31,7 @@ custom_theme = {
   visual = {
     a = {bg = colors.blue, fg = colors.black, gui = 'bold'},
     b = {bg = colors.blue, fg = colors.white},
-    c = {bg = colors.blue, fg = colors.black}
+    c = {bg = colors.blue, fg = colors.white}
   },
   replace = {
     a = {bg = colors.blue, fg = colors.black, gui = 'bold'},
@@ -46,7 +46,7 @@ custom_theme = {
   inactive = {
     a = {bg = colors.inactivegray, fg = colors.gray, gui = 'bold'},
     b = {bg = colors.inactivegray, fg = colors.gray},
-    c = {bg = colors.inactivegray, fg = colors.gray}
+    c = {bg = colors.inactivegray, fg = colors.white}
   }
 }
 
@@ -58,6 +58,14 @@ return {
       theme = custom_theme,
     },
     sections = {
+      lualine_b = {
+        'branch', 
+        {
+          'diff',
+          symbols = { added = " ", modified = " ", removed = " " },
+        }, 
+        'diagnostics'
+      },
       lualine_x = {
         'searchcount'
       },
