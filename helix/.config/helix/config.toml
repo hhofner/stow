@@ -1,2 +1,7 @@
 [editor]
 line-number = "relative"
+
+[editor.statusline]
+mode.normal = "🐶"
+mode.insert = "🚀"
+mode.select = "👆"
