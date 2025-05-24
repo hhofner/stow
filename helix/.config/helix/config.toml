@@ -5,3 +5,6 @@ line-number = "relative"
 mode.normal = "🐶"
 mode.insert = "🚀"
 mode.select = "👆"
+
+[editor.whitespace]
+render = "all"
