@@ -1,6 +1,5 @@
 [editor]
 line-number = "relative"
-# Highlight all lines with a cursor
 cursorline = true
 rulers = [120]
 
@@ -13,3 +12,6 @@ mode.select = "👆"
 insert = "bar"
 normal = "block"
 select = "underline"
+
+[editor.whitespace]
+render = "all"
