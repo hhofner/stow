@@ -1,7 +1,15 @@
 [editor]
 line-number = "relative"
+# Highlight all lines with a cursor
+cursorline = true
+rulers = [120]
 
 [editor.statusline]
 mode.normal = "🐶"
 mode.insert = "🚀"
 mode.select = "👆"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
