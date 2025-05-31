@@ -1,0 +1,10 @@
+inherits = "nord"
+
+# Override the theming for "keyword"s:
+"keyword" = { fg = "gold" }
+
+"ui.statusline" = {"bg" = "vs_code_blue"}
+# Override colors in the palette:
+[palette]
+vs_code_blue = "#1493e2"
+

@@ -1,3 +1,5 @@
+theme = "my-nord"
+
 [editor]
 line-number = "relative"
 cursorline = true
@@ -15,3 +17,7 @@ select = "underline"
 
 [editor.whitespace]
 render = "all"
+
+[editor.file-picker]
+hidden = false
+
