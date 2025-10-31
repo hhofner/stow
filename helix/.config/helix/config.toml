@@ -15,7 +15,8 @@
       # `--___   ___--'
 #
 
-theme = "my-nord"
+#theme = "my-nord"
+theme = "carbonfox"
 
 [editor]
 line-number = "relative"
@@ -23,7 +24,7 @@ cursorline = true
 rulers = [120]
 
 [editor.statusline]
-mode.normal = "🐶"
+mode.normal = "NORMAL"
 mode.insert = "🚀"
 mode.select = "👆"
 

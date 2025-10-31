@@ -3,5 +3,14 @@ name = "python"
 formatter = { command = "ruff", args = ["format", "--line-length", "88", "-"] }
 auto-format = true
 
+[[language]]
+name = "vue"
+auto-format = false
+formatter = { command = "prettier", args = ["--parser", "vue"] }
+language-servers = ["vuels", "typescript-language-server", "emmet-lsp", "scls"] # Emmet en snippet completion for the last 2
 
+[[language-server.typescript-language-server.config.plugins]]
+name = "@vue/typescript-plugin"
+location = "/Users/hans_hofner/.asdf/installs/nodejs/22.3.0/lib/node_modules/@vue/typescript-plugin"
+languages = ["vue"]
 
